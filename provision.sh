@@ -27,20 +27,20 @@ EXTENSIONS=(
 
 CHECKPOINT_MODELS=(
     "https://huggingface.co/runwayml/stable-diffusion-v1-5/resolve/main/v1-5-pruned-emaonly.ckpt"
-    "https://civitai.com/api/download/models/128713"
-    "https://civitai.com/api/download/models/132760"
+    "https://civitai.com/api/download/models/128713" # dreamshaper 8
+    "https://civitai.com/api/download/models/132760" # absolutereality
 )
 # "https://huggingface.co/stabilityai/stable-diffusion-2-1/resolve/main/v2-1_768-ema-pruned.ckpt"
 # "https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0/resolve/main/sd_xl_base_1.0.safetensors"
 # "https://huggingface.co/stabilityai/stable-diffusion-xl-refiner-1.0/resolve/main/sd_xl_refiner_1.0.safetensors"
 
 TI_MODELS=(
-    "https://civitai.com/api/download/models/77169"
-    "https://civitai.com/api/download/models/77173"
+    "https://civitai.com/api/download/models/77169" # baddream
+    "https://civitai.com/api/download/models/77173" # unrealisticdream
 )
 
 LORA_MODELS=(
-    "https://civitai.com/api/download/models/16576"
+    "https://civitai.com/api/download/models/16576" # epi_noiseoffset
 )
 
 VAE_MODELS=(
@@ -101,6 +101,7 @@ function provisioning_start() {
     provisioning_get_models \
         "/opt/stable-diffusion-webui/models/ESRGAN" \
         "${ESRGAN_MODELS[@]}"
+    provisioning_post_run
     provisioning_print_end
 }
 
@@ -126,12 +127,6 @@ function provisioning_get_extensions() {
         fi
     done
 
-# manual pip call for pkgs w/out requirements.txt
-    micromamba -n webui run ${PIP_INSTALL} -U \
-        dynamicprompts[attentiongrabber,magicprompt] \
-        send2trash~=1.8 \
-        pyfunctional \
-        ZipUnicode
 }
 
 function provisioning_get_models() {
@@ -159,6 +154,19 @@ function provisioning_print_header() {
     if [[ $DISK_GB_ALLOCATED -lt $DISK_GB_REQUIRED ]]; then
         printf "WARNING: Your allocated disk size (%sGB) is below the recommended %sGB - Some models will not be downloaded\n" "$DISK_GB_ALLOCATED" "$DISK_GB_REQUIRED"
     fi
+}
+
+# placeholder for extra miscellaneous commands
+function provisioning_post_run() {
+# install 7z
+    apt install 7zip
+
+# manual pip call for pkgs w/out requirements.txt
+    micromamba -n webui run ${PIP_INSTALL} -U \
+        dynamicprompts[attentiongrabber,magicprompt] \
+        send2trash~=1.8 \
+        pyfunctional \
+        ZipUnicode
 }
 
 function provisioning_print_end() {
