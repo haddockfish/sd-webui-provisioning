@@ -1,4 +1,11 @@
 #!/bin/false
+
+# custom provisioning script for ai-dock's stable diffusion webui (a1111) premade docker container
+# for use on cloud gpu providers (e.g. runpod, vast, etc.)
+# see:
+# github.com/ai-dock/stable-diffusion-webui/
+# ghcr.io/ai-dock/stable-diffusion-webui:latest-jupyter
+
 # This file will be sourced in init.sh
 # Namespace functions with provisioning_
 
@@ -6,6 +13,7 @@
 
 ### Edit the following arrays to suit your workflow
 
+# TODO: find correct value after changes (i always just set container volume to at least 50gb)
 DISK_GB_REQUIRED=30
 
 EXTENSIONS=(
