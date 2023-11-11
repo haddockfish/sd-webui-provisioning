@@ -32,6 +32,7 @@ EXTENSIONS=(
     "https://github.com/pkuliyi2015/multidiffusion-upscaler-for-automatic1111"
     "https://github.com/Bing-su/adetailer"
     "https://github.com/dvruette/sd-webui-fabric"
+    "https://github.com/Gourieff/sd-webui-reactor"
 )
 # "https://github.com/deforum-art/sd-webui-deforum"
 
