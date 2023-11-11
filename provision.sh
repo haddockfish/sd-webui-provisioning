@@ -1,11 +1,4 @@
 #!/bin/false
-
-# custom provisioning script for ai-dock's stable diffusion webui (a1111) premade docker container
-# for use on cloud gpu providers (e.g. runpod, vast, etc.)
-# see:
-# github.com/ai-dock/stable-diffusion-webui/
-# ghcr.io/ai-dock/stable-diffusion-webui:latest-jupyter
-
 # This file will be sourced in init.sh
 # Namespace functions with provisioning_
 
@@ -13,8 +6,7 @@
 
 ### Edit the following arrays to suit your workflow
 
-# TODO: find correct value after changes (i always just set container volume to at least 50gb)
-DISK_GB_REQUIRED=30 
+DISK_GB_REQUIRED=30
 
 EXTENSIONS=(
     "https://github.com/Mikubill/sd-webui-controlnet"
@@ -30,6 +22,8 @@ EXTENSIONS=(
     "https://github.com/tkalayci71/embedding-inspector"
     "https://github.com/mcmonkeyprojects/sd-infinity-grid-generator-script"
     "https://github.com/pkuliyi2015/multidiffusion-upscaler-for-automatic1111"
+    "https://github.com/Bing-su/adetailer"
+    "https://github.com/dvruette/sd-webui-fabric"
 )
 # "https://github.com/deforum-art/sd-webui-deforum"
 
@@ -174,7 +168,12 @@ function provisioning_post_run() {
         dynamicprompts[attentiongrabber,magicprompt] \
         send2trash~=1.8 \
         pyfunctional \
-        ZipUnicode
+        ZipUnicode \
+        ultralytics \
+        py-cpuinfo \
+        protobuf \
+        rich \
+        mediapipe
 }
 
 function provisioning_print_end() {
