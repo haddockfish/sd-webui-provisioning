@@ -27,7 +27,7 @@ EXTENSIONS=(
     "https://github.com/BlafKing/sd-civitai-browser-plus"
     "https://github.com/fkunn1326/openpose-editor"
     "https://github.com/thomasasfk/sd-webui-aspect-ratio-helper"
-    "https://github.com/tkalayci71/embedding-inspector"
+#     "https://github.com/tkalayci71/embedding-inspector"
     "https://github.com/mcmonkeyprojects/sd-infinity-grid-generator-script"
     "https://github.com/pkuliyi2015/multidiffusion-upscaler-for-automatic1111"
     "https://github.com/Bing-su/adetailer"
